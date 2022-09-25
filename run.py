@@ -39,12 +39,14 @@ def get_kolo_data():
     SHEET.add_worksheet(project_name, "100", "10")
 
     # Add project heading
+    HEADER = ("date", "duration", "contribution", "expectation", "outstanding")
     project = SHEET.worksheet(project_name)
-    h_date = project.update('A1', 'date')
-    h_duration = project.update('B1', 'duration')
-    h_contribution = project.update('C1', 'contribution')
-    h_expectation = project.update('D1', 'expectaion')
-    h_outstanding = project.update('E1', 'outstanding')
+    heads = project.range('A5:E5')
+
+    for i, head in enumerate(HEADER):
+        heads[i].value = head
+
+    project.update_cells(heads)
 
     print(f"Your '{project_name}' koloproject has been succesfully created")
 
@@ -54,3 +56,5 @@ get_kolo_data()
 #data = project.get_all_records()
 #pandy = pandas.DataFrame(data)
 #print(pandy)
+
+
