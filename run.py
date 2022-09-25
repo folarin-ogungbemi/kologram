@@ -37,7 +37,15 @@ def get_kolo_data():
     # Add a new worksheet
     project_name = input("Enter your project name here: ")
     SHEET.add_worksheet(project_name, "100", "10")
-    
+
+    # Add project heading
+    project = SHEET.worksheet(project_name)
+    h_date = project.update('A1', 'date')
+    h_duration = project.update('B1', 'duration')
+    h_contribution = project.update('C1', 'contribution')
+    h_expectation = project.update('D1', 'expectaion')
+    h_outstanding = project.update('E1', 'outstanding')
+
     print(f"Your '{project_name}' koloproject has been succesfully created")
 
 get_kolo_data()
