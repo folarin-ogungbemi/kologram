@@ -1,4 +1,8 @@
-import gspread
+"""
+Install Modules for the program
+"""
+import gspread #pip install gspread
+import pandas  #pip install pandas
 from google.oauth2.service_account import Credentials
 
 """
@@ -19,7 +23,26 @@ CREDS_SCOPE = CREDS.with_scopes(SCOPE)
 GSPREAD_USER = gspread.authorize(CREDS_SCOPE)
 SHEET = GSPREAD_USER.open('kologram')
 
-income_statement = SHEET.worksheet('income statement')
+# collect data from user
+def get_kolo_data():
+    """
+    Get input from user
+    """
+    print("Please Enter your data below\n")
 
-kolo_data = income_statement.get_all_values()
-print(kolo_data)
+    user_name = input("Enter your username: ")
+    print(f"{user_name}, Welcome to kologram\n")
+    print("Start your first project\n")
+
+    # Add a new worksheet
+    project_name = input("Enter your project name here: ")
+    SHEET.add_worksheet(project_name, "100", "10")
+    
+    print(f"Your '{project_name}' koloproject has been succesfully created")
+
+get_kolo_data()
+
+
+#data = project.get_all_records()
+#pandy = pandas.DataFrame(data)
+#print(pandy)
