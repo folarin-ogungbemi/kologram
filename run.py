@@ -23,38 +23,35 @@ CREDS_SCOPE = CREDS.with_scopes(SCOPE)
 GSPREAD_USER = gspread.authorize(CREDS_SCOPE)
 SHEET = GSPREAD_USER.open('kologram')
 
-# collect data from user
-def get_kolo_data():
+def project_starter():
     """
-    Get input from user
+    Get project information from user
     """
-    print("Please Enter your data below\n")
+    print("Start your desired project")
+    print("For Example: Vacation\n")
 
-    user_name = input("Enter your username: ")
-    print(f"{user_name}, Welcome to kologram\n")
-    print("Start your first project\n")
-
-    # Add a new worksheet
     project_name = input("Enter your project name here: ")
-    SHEET.add_worksheet(project_name, "100", "10")
+    SHEET.add_worksheet(project_name, "500", "15")
 
     # Add project heading
-    HEADER = ("date", "duration", "contribution", "expectation", "outstanding")
+    heading = ("DATE", "NAME", "BUDGET", "DUE", "OUTSTANDING")
     project = SHEET.worksheet(project_name)
-    heads = project.range('A5:E5')
+    heads = project.range('F2:J2')
 
-    for i, head in enumerate(HEADER):
+    for i, head in enumerate(heading):
         heads[i].value = head
 
     project.update_cells(heads)
+    project.update('G3', project_name)
+    kolo_budget(project)
 
-    print(f"Your '{project_name}' koloproject has been succesfully created")
+    print(f"Your '{project_name}' koloproject has been succesfully created\n")
+    
+def kolo_budget(data):
+    """
+    Get Project estimated budget from user
+    """
+    project_budget = input("Enter your estimated budget for the project: ")
+    data.update('H3', project_budget)
 
-get_kolo_data()
-
-
-#data = project.get_all_records()
-#pandy = pandas.DataFrame(data)
-#print(pandy)
-
-
+project_starter()
