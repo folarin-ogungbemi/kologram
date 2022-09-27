@@ -1,8 +1,8 @@
 """
 Install Modules for the program
 """
-import gspread #pip install gspread
-import pandas  #pip install pandas
+import gspread  # pip install gspread
+import pandas  # pip install pandas
 from google.oauth2.service_account import Credentials
 
 """
@@ -29,7 +29,7 @@ def project_starter():
     """
     while True:
         print("Start your desired project")
-        print("For Example: Vacation\n")
+        print("e.g: 'Vacation', 'Car', 'Lamborghini', 'Child-education'\n")
 
         project_name = input("Enter your project name here: ").capitalize()
 
