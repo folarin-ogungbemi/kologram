@@ -2,6 +2,7 @@
 Install Modules for the program
 """
 import gspread  # pip install gspread
+import datetime
 import pandas  # pip install pandas
 from google.oauth2.service_account import Credentials
 
@@ -34,7 +35,7 @@ def project_starter():
         project_name = input("Enter your project name here: ").capitalize()
 
         if validate_project_name(project_name):
-            print("name is valid!")
+            print("name is valid!\n")
             break
     
     #######################
@@ -57,8 +58,14 @@ def kolo_budget(data):
     """
     Get Project estimated budget from user
     """
-    project_budget = input("Enter your estimated budget for the project: ")
-    data.update('H3', project_budget)
+    while True:
+        print("Enter budget in numbers or decimals")
+        print("For Example: '1234567890', '123.456'\n")
+
+        project_budget = input("Enter your estimated budget for the project: ")
+        if validate_project_budget(project_budget, data):
+            print("Data is valid!\n")
+            break
 
 def validate_project_name(name):
     """
@@ -78,10 +85,28 @@ def validate_project_name(name):
                 return False
     return True
 
+def validate_project_budget(budget, data):
+    """
+    Try converts user input from string to float
+    ValueError if user input is not convertible
+    request re-entry
+    """
+    try:
+        convert = float(budget)
+        data.update('H3', convert)
+    except ValueError as err:
+        print(f"Budget is expected in Digits, you entered {budget}")
+        print(f"Invalid Data: {err}, please try again.")
+        return False
+    return True
 
+    
 project_starter()
 
+#print(dir(SHEET))
+# print(dir(datetime))  
 
-# wks = SHEET.worksheets()
-# name_wks = wks[1].title
-# print(name_wks)
+# dt = datetime.date.today()
+# print(dt)
+# new = SHEET.worksheet('intro')
+# new.update_acell('A5', dt)
