@@ -31,7 +31,7 @@ def project_starter():
         print("Start your desired project")
         print("For Example: Vacation\n")
 
-        project_name = input("Enter your project name here: ")
+        project_name = input("Enter your project name here: ").capitalize()
 
         if validate_project_name(project_name):
             SHEET.add_worksheet(project_name, "500", "15")
