@@ -34,11 +34,12 @@ def project_starter():
         project_name = input("Enter your project name here: ").capitalize()
 
         if validate_project_name(project_name):
-            SHEET.add_worksheet(project_name, "500", "15")
+            print("name is valid!")
             break
     
-
-    # Add project heading
+    #######################
+    # Add project heading #
+    #######################
     heading = ("DATE", "NAME", "BUDGET", "DUE", "OUTSTANDING")
     project = SHEET.worksheet(project_name)
     heads = project.range('F2:J2')
@@ -51,7 +52,7 @@ def project_starter():
     kolo_budget(project)
 
     print(f"Your '{project_name}' koloproject has been succesfully created\n")
-    
+  
 def kolo_budget(data):
     """
     Get Project estimated budget from user
@@ -60,22 +61,23 @@ def kolo_budget(data):
     data.update('H3', project_budget)
 
 def validate_project_name(name):
-    
+    """
+    Try adds a new worksheet.
+    If worksheet previously exist, user must enter a different name
+    """
+    suggest = "unique attributes"
     try:
-        new = SHEET.worksheets()
-        for exist in new:
+        SHEET.add_worksheet(name, "500", "15")
+    except gspread.exceptions.APIError as error:
+        my_projects = SHEET.worksheets()
+        for exist in my_projects:
             if exist.title == name:
-                print("name is thesame")
-                raise gspread.exceptions.APIError(
-                    f"{name} already exist"
-                    )
-    except gspread.exceptions.APIError as e:
-        print(f"If you choose to use same name, please add a prefix e.g second- or third-{name}\n")
-        print(f"Invalid data: {e}, please try again.\n")
-        return False
+                print(f"Koloproject {name} already exist")
+                print(f"Invalid data: {error}\n")
+                print(f"Use a prefix e.g: Second-{name} or {name} {suggest}\n")
+                return False
     return True
 
-        
 
 project_starter()
 
