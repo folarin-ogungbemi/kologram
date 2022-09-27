@@ -5,12 +5,9 @@ import datetime
 import json
 import gspread  # pip install gspread
 from google.oauth2.service_account import Credentials
-import pandas  # pip install pandas
+# import pandas  # pip install pandas
 
-
-"""
-Constant variable that stores the APIs needed for the program
-"""
+# Constant variable that stores the APIs needed for the program
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
     "https://www.googleapis.com/auth/drive.file",
@@ -26,6 +23,7 @@ CREDS_SCOPE = CREDS.with_scopes(SCOPE)
 GSPREAD_USER = gspread.authorize(CREDS_SCOPE)
 SHEET = GSPREAD_USER.open('kologram')
 
+
 def project_starter():
     """
     Get project information from user
@@ -39,7 +37,7 @@ def project_starter():
         if validate_project_name(project_name):
             print("name is valid!\n")
             break
-    
+
     #######################
     # Add project heading #
     #######################
@@ -56,7 +54,8 @@ def project_starter():
     kolo_date(project)
 
     print(f"Your '{project_name}' koloproject has been succesfully created\n")
-  
+
+
 def kolo_budget(data):
     """
     Get Project estimated budget from user
@@ -70,6 +69,7 @@ def kolo_budget(data):
             print("Data is valid!\n")
             break
 
+
 def kolo_date(data):
     """
     Insert date of project creation
@@ -78,6 +78,7 @@ def kolo_date(data):
     print(project_date)
     date_dump = json.dumps(project_date, default=str)
     data.update_acell('F3', date_dump.strip('"'))
+
 
 def validate_project_name(name):
     """
@@ -96,6 +97,7 @@ def validate_project_name(name):
                 print(f"Use a prefix e.g: Second-{name} or {name} {suggest}\n")
                 return False
     return True
+
 
 def validate_project_budget(budget, data):
     """
