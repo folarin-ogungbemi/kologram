@@ -27,11 +27,16 @@ def project_starter():
     """
     Get project information from user
     """
-    print("Start your desired project")
-    print("For Example: Vacation\n")
+    while True:
+        print("Start your desired project")
+        print("For Example: Vacation\n")
 
-    project_name = input("Enter your project name here: ")
-    SHEET.add_worksheet(project_name, "500", "15")
+        project_name = input("Enter your project name here: ")
+
+        if validate_project_name(project_name):
+            SHEET.add_worksheet(project_name, "500", "15")
+            break
+    
 
     # Add project heading
     heading = ("DATE", "NAME", "BUDGET", "DUE", "OUTSTANDING")
@@ -54,4 +59,27 @@ def kolo_budget(data):
     project_budget = input("Enter your estimated budget for the project: ")
     data.update('H3', project_budget)
 
+def validate_project_name(name):
+    
+    try:
+        new = SHEET.worksheets()
+        for exist in new:
+            if exist.title == name:
+                print("name is thesame")
+                raise gspread.exceptions.APIError(
+                    f"{name} already exist"
+                    )
+    except gspread.exceptions.APIError as e:
+        print(f"If you choose to use same name, please add a prefix e.g second- or third-{name}\n")
+        print(f"Invalid data: {e}, please try again.\n")
+        return False
+    return True
+
+        
+
 project_starter()
+
+
+# wks = SHEET.worksheets()
+# name_wks = wks[1].title
+# print(name_wks)
