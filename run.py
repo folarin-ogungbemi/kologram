@@ -1,10 +1,12 @@
 """
 Install Modules for the program
 """
-import gspread  # pip install gspread
 import datetime
-import pandas  # pip install pandas
+import json
+import gspread  # pip install gspread
 from google.oauth2.service_account import Credentials
+import pandas  # pip install pandas
+
 
 """
 Constant variable that stores the APIs needed for the program
@@ -51,6 +53,7 @@ def project_starter():
     project.update_cells(heads)
     project.update('G3', project_name)
     kolo_budget(project)
+    kolo_date(project)
 
     print(f"Your '{project_name}' koloproject has been succesfully created\n")
   
@@ -66,6 +69,15 @@ def kolo_budget(data):
         if validate_project_budget(project_budget, data):
             print("Data is valid!\n")
             break
+
+def kolo_date(data):
+    """
+    Insert date of project creation
+    """
+    project_date = datetime.date.today()
+    print(project_date)
+    date_dump = json.dumps(project_date, default=str)
+    data.update_acell('F3', date_dump.strip('"'))
 
 def validate_project_name(name):
     """
@@ -100,13 +112,5 @@ def validate_project_budget(budget, data):
         return False
     return True
 
-    
+
 project_starter()
-
-#print(dir(SHEET))
-# print(dir(datetime))  
-
-# dt = datetime.date.today()
-# print(dt)
-# new = SHEET.worksheet('intro')
-# new.update_acell('A5', dt)
