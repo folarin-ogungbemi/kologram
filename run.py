@@ -5,9 +5,10 @@ import datetime
 import json
 import gspread  # pip install gspread
 from google.oauth2.service_account import Credentials
-# import pandas  # pip install pandas
+from googleapiclient.discovery import build
+import pandas  # pip install pandas
 
-# Constant variable that stores the APIs needed for the program
+# Services we need access to for the program
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
     "https://www.googleapis.com/auth/drive.file",
@@ -22,6 +23,9 @@ CREDS = Credentials.from_service_account_file('creds.json')
 CREDS_SCOPE = CREDS.with_scopes(SCOPE)
 GSPREAD_USER = gspread.authorize(CREDS_SCOPE)
 SHEET = GSPREAD_USER.open('kologram')
+SHEET_ID = '10X1NwBvz4pvtKHfrLJvz0I0h-4QBr_I2NYH5IChiPME'
+SERVICE = build('sheets', 'v4', credentials=CREDS)
+VALUES = SERVICE.spreadsheets().values()
 
 
 def project_starter():
@@ -54,6 +58,12 @@ def project_starter():
     kolo_date(project)
 
     print(f"Your '{project_name}' koloproject has been succesfully created\n")
+
+    result = VALUES.get(spreadsheetId=SHEET_ID, range=project_name+"!F2:J3")
+    response = result.execute()
+    values = response.get('values', [])
+
+    print(pandas.DataFrame(values))
 
 
 def kolo_budget(data):
