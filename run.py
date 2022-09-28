@@ -59,6 +59,7 @@ def project_starter():
 
     print(f"Your '{project_name}' koloproject has been succesfully created\n")
 
+    # Code idea from Google sheets API
     result = VALUES.get(spreadsheetId=SHEET_ID, range=project_name+"!F2:J3")
     response = result.execute()
     values = response.get('values', [])
@@ -86,6 +87,7 @@ def kolo_date(data):
     """
     project_date = datetime.date.today()
     print(project_date)
+    # Code idea from PYnative
     date_dump = json.dumps(project_date, default=str)
     data.update_acell('F3', date_dump.strip('"'))
 
