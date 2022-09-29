@@ -2,6 +2,7 @@
 Install Modules for the program
 """
 import datetime
+from datetime import date, timedelta
 import json
 import gspread  # pip install gspread
 from google.oauth2.service_account import Credentials
@@ -102,6 +103,16 @@ def calculate_due_date(data):
 
     project_due_date = input("Enter project due date: ").split(",")
 
+    dated_list = []
+    for i in project_due_date:
+        my_int = int(i)
+        dated_list.append(my_int)
+    
+    dated_tup = tuple(dated_list)
+    print(dated_tup)
+    # *args idea from stackoverflow
+    due_date = datetime.date(*dated_tup)
+    print(due_date)
 
 def validate_project_name(name):
     """
