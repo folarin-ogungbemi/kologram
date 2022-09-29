@@ -153,4 +153,22 @@ def validate_project_budget(budget, data):
     return True
 
 
-project_starter()
+# project_starter()
+
+def kolo_day():
+    """
+    Ask if user wants to save today
+    Get users periodic contribution data
+    """
+    question = input("Would you like to Kolo today (y/n): ").lower()
+    if question == 'y':
+        kolo_amount = input("Enter contribution amount: ")
+        print(kolo_amount)
+        print("Your koloproject has been updated")
+    elif question == 'n':
+        print("Thank you for using kologram")
+    else:
+        print("please type y or n")
+
+
+kolo_day()
