@@ -56,6 +56,7 @@ def project_starter():
     project.update('G3', project_name)
     kolo_budget(project)
     kolo_date(project)
+    calculate_due_date(project)
 
     print(f"Your '{project_name}' koloproject has been succesfully created\n")
 
@@ -87,9 +88,19 @@ def kolo_date(data):
     """
     project_date = datetime.date.today()
     print(project_date)
-    # Code idea from PYnative
+    # json.dumps idea from PYnative
     date_dump = json.dumps(project_date, default=str)
     data.update_acell('F3', date_dump.strip('"'))
+
+
+def calculate_due_date(data):
+    """
+    Ask user for project due date.
+    """
+    print("Enter project due date like so: year, month, day.")
+    print("Example: 2022, 9, 26")
+
+    project_due_date = input("Enter project due date: ").split(",")
 
 
 def validate_project_name(name):
