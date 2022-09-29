@@ -160,15 +160,17 @@ def kolo_day():
     Ask if user wants to save today
     Get users periodic contribution data
     """
-    question = input("Would you like to Kolo today (y/n): ").lower()
-    if question == 'y':
-        kolo_amount = input("Enter contribution amount: ")
-        print(kolo_amount)
-        print("Your koloproject has been updated")
-    elif question == 'n':
-        print("Thank you for using kologram")
-    else:
-        print("please type y or n")
+    while True:
+        question = input("Would you like to Kolo today (y/n): ")
+        if question == 'y'.lower():
+            kolo_amount = input("Enter contribution amount: ")
+            print(kolo_amount)
+            print("Your koloproject has been updated")
+            return False
+        if question == 'n'.lower():
+            print("Thank you for using kologram")
+            return False
+        print(f"Invalid input: '{question}'. Please type y or n")
 
 
 kolo_day()
