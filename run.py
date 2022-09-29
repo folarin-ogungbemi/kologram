@@ -2,7 +2,6 @@
 Install Modules for the program
 """
 import datetime
-from datetime import date, timedelta
 import json
 import gspread  # pip install gspread
 from google.oauth2.service_account import Credentials
@@ -61,12 +60,13 @@ def project_starter():
 
     print(f"Your '{project_name}' koloproject has been succesfully created\n")
 
+    print("-------------------- Project Overview --------------------")
     # Code idea from Google sheets API
     result = VALUES.get(spreadsheetId=SHEET_ID, range=project_name+"!F2:J3")
     response = result.execute()
     values = response.get('values', [])
-
     print(pandas.DataFrame(values))
+    print("----------------------------------------------------------")
 
 
 def kolo_budget(data):
@@ -88,7 +88,6 @@ def kolo_date(data):
     Insert date of project creation
     """
     project_date = datetime.date.today()
-    print(project_date)
     # json.dumps idea from PYnative
     # serialize datetime into JSON
     date_dump = json.dumps(project_date, default=str)
@@ -100,7 +99,7 @@ def calculate_due_date(data):
     Ask user for project due date.
     """
     print("Enter project due date like so: year, month, day.")
-    print("Example: 2022, 9, 26")
+    print("Example: 2022, 9, 26\n")
 
     project_due_date = input("Enter project due date: ").split(",")
     current_date = datetime.date.today()
