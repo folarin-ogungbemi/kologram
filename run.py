@@ -90,6 +90,7 @@ def kolo_date(data):
     project_date = datetime.date.today()
     print(project_date)
     # json.dumps idea from PYnative
+    # serialize datetime into JSON
     date_dump = json.dumps(project_date, default=str)
     data.update_acell('F3', date_dump.strip('"'))
 
@@ -102,17 +103,21 @@ def calculate_due_date(data):
     print("Example: 2022, 9, 26")
 
     project_due_date = input("Enter project due date: ").split(",")
+    current_date = datetime.date.today()
 
     dated_list = []
     for i in project_due_date:
         my_int = int(i)
         dated_list.append(my_int)
-    
+    # convert dated_list to tuple
     dated_tup = tuple(dated_list)
-    print(dated_tup)
     # *args idea from stackoverflow
     due_date = datetime.date(*dated_tup)
-    print(due_date)
+    days_left = abs(current_date - due_date).days
+    # serialize datetime into JSON
+    date_dump = json.dumps(days_left, default=str)
+    data.update('I3', date_dump.strip('"')+" days")
+
 
 def validate_project_name(name):
     """
