@@ -103,21 +103,42 @@ def calculate_due_date(data):
     print("Enter project due date like so: year, month, day.")
     print("Example: 2022, 9, 26\n")
 
-    project_due_date = input("Enter project due date: ").split(",")
-    current_date = datetime.date.today()
+    while True:
+        project_due_date = input("Enter project due date: ")
+        current_date = datetime.date.today()
+        if validate_project_due_date(project_due_date):
+            print("data is valid!")
+            split_date = project_due_date.split(",")
+            dated_list = []
+            for i in split_date:
+                my_int = int(i)
+                dated_list.append(my_int)
+            # convert dated_list to tuple
+            dated_tup = tuple(dated_list)
+            print(dated_tup)
+            # *args idea from stackoverflow
+            due_date = datetime.date(*dated_tup)
+            print(due_date)
+            days_left = abs(current_date - due_date).days
+            # serialize datetime into JSON
+            date_dump = json.dumps(days_left, default=str)
+            data.update('I3', date_dump.strip('"')+" days")
+            break
 
-    dated_list = []
-    for i in project_due_date:
-        my_int = int(i)
-        dated_list.append(my_int)
-    # convert dated_list to tuple
-    dated_tup = tuple(dated_list)
-    # *args idea from stackoverflow
-    due_date = datetime.date(*dated_tup)
-    days_left = abs(current_date - due_date).days
-    # serialize datetime into JSON
-    date_dump = json.dumps(days_left, default=str)
-    data.update('I3', date_dump.strip('"')+" days")
+def validate_project_due_date(data):
+    """
+    Try checks user input.
+    If user input is invalid, user corrects input
+    """
+    try:
+        if len(data) < 8:
+            raise TypeError(f"You entered {data}.")
+    except TypeError as err:
+        print(f"Invalid data:{err}.")
+        print("Enter project due date like so: year, month, day.")
+        print("Example: 2022, 9, 26\n")
+        return False
+    return True
 
 
 def validate_project_name(name):
@@ -175,7 +196,7 @@ def kolo_day():
                             range="Car!C5:D5",
                             valueInputOption="USER_ENTERED",
                             insertDataOption='INSERT_ROWS',
-                            body={"values": account}).execute()
+                            body={"values": main}).execute()
 
             print("Your koloproject has been updated\n")
             return False
