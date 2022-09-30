@@ -65,6 +65,23 @@ def project_overview():
     """
     See project overview
     """
+    my_project = list_of_projects()
+
+    print("-------------------- Project Overview --------------------")
+    # Code idea from Google sheets API
+    response = S_VALUES.get(spreadsheetId=SHEET_ID,
+                            range=my_project+"!F2:J3").execute()
+    values = response.get('values', [])
+    print(pandas.DataFrame(values))
+    print("----------------------------------------------------------")
+        
+
+
+def list_of_projects():
+    """
+    Prints the list of projects
+    search out project from list
+    """
     my_projects = SHEET.worksheets()
 
     # collect created projects 
@@ -82,15 +99,9 @@ def project_overview():
     i = 1
     while i < len(my_projects_list):
         if my_projects_list[i] == my_project:
-            print("-------------------- Project Overview --------------------")
-            # Code idea from Google sheets API
-            response = S_VALUES.get(spreadsheetId=SHEET_ID,
-                                    range=my_project+"!F2:J3").execute()
-            values = response.get('values', [])
-            print(pandas.DataFrame(values))
-            print("----------------------------------------------------------")
+            return my_project
         i += 1
-        
+
 
 def kolo_budget(data):
     """
@@ -206,6 +217,7 @@ def kolo_day():
     while True:
         question = input("Would you like to Kolo today (y/n): ")
         if question == 'y'.lower():
+            my_project = list_of_projects()
             kolo_amount = float(input("Enter contribution amount: "))
             # Enter date the account was credited
             credit_date = datetime.date.today()
@@ -304,6 +316,7 @@ def main():
             project_starter()
         elif option == 2:
             print("Savings block is opening ...\n")
+            kolo_day()
         elif option == 3:
             print("Project overview loading ...\n")
             project_overview()
@@ -312,3 +325,6 @@ def main():
 
 
 main()
+
+
+
