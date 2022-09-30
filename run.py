@@ -100,10 +100,10 @@ def calculate_due_date(data):
     """
     Ask user for project due date.
     """
-    print("Enter project due date like so: year, month, day.")
-    print("Example: 2022, 9, 26\n")
-
     while True:
+        print("Enter project due date like so: year, month, day.")
+        print("Example: 2022,9,26\n")
+
         project_due_date = input("Enter project due date: ")
         current_date = datetime.date.today()
         if validate_project_due_date(project_due_date):
@@ -125,6 +125,7 @@ def calculate_due_date(data):
             data.update('I3', date_dump.strip('"')+" days")
             break
 
+
 def validate_project_due_date(data):
     """
     Try checks user input.
@@ -132,11 +133,9 @@ def validate_project_due_date(data):
     """
     try:
         if len(data) < 8:
-            raise TypeError(f"You entered {data}.")
+            raise TypeError(f"You entered {data}. Please try again\n")
     except TypeError as err:
         print(f"Invalid data:{err}.")
-        print("Enter project due date like so: year, month, day.")
-        print("Example: 2022, 9, 26\n")
         return False
     return True
 
@@ -196,7 +195,7 @@ def kolo_day():
                             range="Car!C5:D5",
                             valueInputOption="USER_ENTERED",
                             insertDataOption='INSERT_ROWS',
-                            body={"values": main}).execute()
+                            body={"values": account}).execute()
 
             print("Your koloproject has been updated\n")
             return False
@@ -239,8 +238,8 @@ def calculate_outstanding_amount(budget):
     values = response.get('values', [])
     for value in values:
         # code from Tutorial by Eyehunt
-        s = [str(integer) for integer in value]
-        str_amount = "".join(s)
+        s_list = [str(integer) for integer in value]
+        str_amount = "".join(s_list)
         int_amount = int(str_amount)
         total_amount += int_amount
 
@@ -261,9 +260,9 @@ def main():
     # Code idea from Computer science, Youtube
     while option != 0:
         # Create the option  menu
-        CRITERIA = "Please choose option 0, 1, 2 or 3"
+        option_criteria = "Please choose option 0, 1, 2 or 3"
         print("\nWelcome to kologram, your simple project tracker")
-        print(f"To begin, {CRITERIA}")
+        print(f"To begin, {option_criteria}")
         print("------------------------------------------------")
         print("1. Start a new project")
         print("2. Save today")
@@ -284,7 +283,7 @@ def main():
         elif option == 3:
             print("Project overview loading ...\n")
         else:
-            print(f"Option is Incorrect. {CRITERIA}\n")
+            print(f"Option is Incorrect. {option_criteria}\n")
 
 
 main()
