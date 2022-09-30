@@ -231,4 +231,19 @@ def calculate_outstanding_amount(budget):
                     body={"values": outstanding}).execute()
 
 
-project_starter()
+# project_starter()
+
+# kologram Main program
+option = None  # This will be the user's service preference
+# Code idea from Computer science, Youtube
+while option != 0:
+    # Create the option  menu
+    CRITERIA = "Please choose option 0, 1, 2 or 3"
+    print("\nWelcome to kologram, your simple project tracker")
+    print(f"To begin, {CRITERIA}")
+    print("------------------------------------------------")
+    print("1. Start a new project")
+    print("2. Save today")
+    print("3. See project overview")
+    print("0. Exit kologram\n")
+    option = int(input("Choose an option: "))
