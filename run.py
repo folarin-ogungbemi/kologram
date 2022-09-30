@@ -75,18 +75,22 @@ def project_overview():
 
     print("------ My Existing Projects ------")
     print(pandas.DataFrame(my_projects_list[1:]))
-    print("----------------------------------")
+    print("----------------------------------\n")
 
-    # my_project = input("Enter project name here: ")
-
-    print("-------------------- Project Overview --------------------")
-    # Code idea from Google sheets API
-    result = S_VALUES.get(spreadsheetId=SHEET_ID, range=project_name+"!F2:J3")
-    response = result.execute()
-    values = response.get('values', [])
-    print(pandas.DataFrame(values))
-    print("----------------------------------------------------------")
-
+    print("Choose desired project from above list")
+    my_project = input("Enter project name here: ").capitalize()
+    i = 1
+    while i < len(my_projects_list):
+        if my_projects_list[i] == my_project:
+            print("-------------------- Project Overview --------------------")
+            # Code idea from Google sheets API
+            response = S_VALUES.get(spreadsheetId=SHEET_ID,
+                                    range=my_project+"!F2:J3").execute()
+            values = response.get('values', [])
+            print(pandas.DataFrame(values))
+            print("----------------------------------------------------------")
+        i += 1
+        
 
 def kolo_budget(data):
     """
@@ -171,7 +175,7 @@ def validate_project_name(name):
         my_projects = SHEET.worksheets()
         for exist in my_projects:
             if exist.title == name:
-                print(f"Koloproject {name} already exist")
+                print(f"Koloproject '{name}' already exist")
                 print(f"Invalid data: {error}\n")
                 print(f"Use a prefix e.g: Second-{name} or {name} {suggest}\n")
                 return False
