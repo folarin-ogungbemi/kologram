@@ -204,4 +204,19 @@ def kolo_table(project_name):
     kolo_day()
 
 
-project_starter()
+# project_starter()
+
+def calculate_outstanding_amount():
+    """
+    collects data from account history
+    deduct total amount from budget
+    update outstanding
+    """
+    # Code from Google sheet API
+    # Collect kolo_amount
+    response = S_VALUES.get(spreadsheetId=SHEET_ID, 
+                            range="Car!D6:D500").execute()
+    values = response.get('values', [])
+    print(values)
+
+calculate_outstanding_amount()
