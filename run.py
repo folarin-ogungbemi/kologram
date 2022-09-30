@@ -212,10 +212,9 @@ def calculate_outstanding_amount(budget):
     update outstanding
     """
     total_amount = 0
-    outstanding = [[int(budget) - total_amount]]
     # Code from Google sheet API
     # Collect kolo_amount
-    response = S_VALUES.get(spreadsheetId=SHEET_ID, 
+    response = S_VALUES.get(spreadsheetId=SHEET_ID,
                             range="Car!D6:D500").execute()
     values = response.get('values', [])
     for value in values:
@@ -224,14 +223,12 @@ def calculate_outstanding_amount(budget):
         str_amount = "".join(s)
         int_amount = int(str_amount)
         total_amount += int_amount
-   
+
+    outstanding = [[int(budget) - total_amount]]
     S_VALUES.update(spreadsheetId=SHEET_ID,
                     range="Car!J3",
                     valueInputOption='USER_ENTERED',
                     body={"values": outstanding}).execute()
-
-    print(total_amount)
-    print("outstanding updated")
 
 
 project_starter()
