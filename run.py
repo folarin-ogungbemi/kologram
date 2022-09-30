@@ -65,15 +65,19 @@ def project_overview():
     """
     See project overview
     """
-    my_project = list_of_projects()
+    my_project = project_search()
 
-    print("-------------------- Project Overview --------------------")
-    # Code idea from Google sheets API
-    response = S_VALUES.get(spreadsheetId=SHEET_ID,
-                            range=my_project+"!F2:J3").execute()
-    values = response.get('values', [])
-    print(pandas.DataFrame(values))
-    print("----------------------------------------------------------")
+    if my_project == "None":
+        print("\nThe project you entered does not exist!!")
+        print("Please check your project list and try again")
+    else:
+        print("-------------------- Project Overview --------------------")
+        # Code idea from Google sheets API
+        response = S_VALUES.get(spreadsheetId=SHEET_ID,
+                                range=my_project+"!F2:J3").execute()
+        values = response.get('values', [])
+        print(pandas.DataFrame(values))
+        print("----------------------------------------------------------")
         
 
 def list_of_projects():
@@ -105,7 +109,7 @@ def project_search():
     for project in my_projects:
         projects = project.title
         my_projects_list.append(projects)
-
+    list_of_projects()
     print("Choose desired project from above list")
     my_project = input("Enter project name here: ").capitalize()
     i = 0
@@ -113,8 +117,7 @@ def project_search():
     while i < len(my_projects_list):
         if my_project == my_projects_list[i]:
             project_found = my_project
-            list_of_projects()
-            break
+            return project_found
         i += 1
     return project_found
 
