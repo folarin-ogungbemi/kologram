@@ -58,7 +58,6 @@ def project_starter():
     kolo_date(project)
     calculate_due_date(project)
     kolo_table(project_name)
-    project_search(project)
 
     print(f"Your '{project_name}' koloproject has been succesfully created\n")
 
@@ -92,23 +91,32 @@ def list_of_projects():
     print("------ My Existing Projects ------")
     print(pandas.DataFrame(my_projects_list[1:]))
     print("----------------------------------\n")
-    return my_projects_list
 
 
-def project_search(my_project):
+def project_search():
     """
     Prints the list of projects
     search out project from list
     """
-    my_projects_list = list_of_projects()
+    my_projects = SHEET.worksheets()
+
+    # collect created projects 
+    my_projects_list = []
+    for project in my_projects:
+        projects = project.title
+        my_projects_list.append(projects)
+
     print("Choose desired project from above list")
     my_project = input("Enter project name here: ").capitalize()
-    i = 1
+    i = 0
+    project_found = "None"
     while i < len(my_projects_list):
         if my_project == my_projects_list[i]:
-            return my_project
+            project_found = my_project
+            list_of_projects()
+            break
         i += 1
-
+    return project_found
 
 def kolo_budget(data):
     """
@@ -332,6 +340,3 @@ def main():
 
 
 main()
-
-
-
