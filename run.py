@@ -159,8 +159,6 @@ def kolo_day():
     Ask if user wants to save today
     Get users periodic contribution data
     """
-    total_savings = 0
-    kolo_list = []
     while True:
         question = input("Would you like to Kolo today (y/n): ")
         if question == 'y'.lower():
@@ -179,14 +177,7 @@ def kolo_day():
                             insertDataOption='INSERT_ROWS',
                             body={"values": main}).execute()
 
-            kolo_list.append(kolo_amount)
-            for kolo in kolo_list:
-                total_savings += float(kolo)
-                print(kolo_amount)
-                print(kolo_list)
-            print("Your koloproject has been updated")
-            print("------------")
-            print(total_savings)
+            print("Your koloproject has been updated\n")
             return False
         if question == 'n'.lower():
             print("Thank you for using kologram")
