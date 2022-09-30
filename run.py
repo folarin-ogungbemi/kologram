@@ -230,9 +230,6 @@ def calculate_outstanding_amount(budget):
                     valueInputOption='USER_ENTERED',
                     body={"values": outstanding}).execute()
 
-
-# project_starter()
-
 # kologram Main program
 option = None  # This will be the user's service preference
 # Code idea from Computer science, Youtube
@@ -255,6 +252,7 @@ while option != 0:
         break
     if option == 1:
         print("Starting program ...\n")
+        project_starter()
     elif option == 2:
         print("Savings block is opening ...\n")
     elif option == 3:
