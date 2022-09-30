@@ -58,6 +58,7 @@ def project_starter():
     kolo_date(project)
     calculate_due_date(project)
     kolo_table(project_name)
+    project_search(project)
 
     print(f"Your '{project_name}' koloproject has been succesfully created\n")
 
@@ -80,7 +81,6 @@ def project_overview():
 def list_of_projects():
     """
     Prints the list of projects
-    search out project from list
     """
     my_projects = SHEET.worksheets()
 
@@ -94,11 +94,17 @@ def list_of_projects():
     print(pandas.DataFrame(my_projects_list[1:]))
     print("----------------------------------\n")
 
+
+def project_search(my_project):
+    """
+    Prints the list of projects
+    search out project from list
+    """
     print("Choose desired project from above list")
     my_project = input("Enter project name here: ").capitalize()
     i = 1
     while i < len(my_projects_list):
-        if my_projects_list[i] == my_project:
+        if my_project == my_projects_list[i]:
             return my_project
         i += 1
 
@@ -227,7 +233,7 @@ def kolo_day():
             account = [[main_dump, kolo_amount]]
             # from Google sheets API
             S_VALUES.append(spreadsheetId=SHEET_ID,
-                            range="Car!C5:D5",
+                            range=my_project+"!C5:D5",
                             valueInputOption="USER_ENTERED",
                             insertDataOption='INSERT_ROWS',
                             body={"values": account}).execute()
