@@ -132,10 +132,11 @@ def validate_project_due_date(data):
     If user input is invalid, user corrects input
     """
     try:
-        if len(data) < 8:
-            raise TypeError(f"You entered {data}. Please try again\n")
+        if len(data) > 10:
+            raise TypeError(f"You entered too many values, {data}")
     except TypeError as err:
-        print(f"Invalid data:{err}.")
+        print(f"\nInvalid data:{err}")
+        print("Please try again!\n")
         return False
     return True
 
@@ -212,7 +213,7 @@ def kolo_table(project_name):
     #####################
     # Add table heading #
     #####################
-    heading = ("DATE", "ANOUNT")
+    heading = ("DATE", "AMOUNT")
     project = SHEET.worksheet(project_name)
     heads = project.range('C5:D5')
 
@@ -287,3 +288,4 @@ def main():
 
 
 main()
+
