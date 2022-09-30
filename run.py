@@ -61,6 +61,24 @@ def project_starter():
 
     print(f"Your '{project_name}' koloproject has been succesfully created\n")
 
+def project_overview():
+    """
+    See project overview
+    """
+    my_projects = SHEET.worksheets()
+
+    # collect created projects 
+    my_projects_list = []
+    for project in my_projects:
+        projects = project.title
+        my_projects_list.append(projects)
+
+    print("------ My Existing Projects ------")
+    print(pandas.DataFrame(my_projects_list[1:]))
+    print("----------------------------------")
+
+    # my_project = input("Enter project name here: ")
+
     print("-------------------- Project Overview --------------------")
     # Code idea from Google sheets API
     result = S_VALUES.get(spreadsheetId=SHEET_ID, range=project_name+"!F2:J3")
@@ -202,6 +220,7 @@ def kolo_day():
             return False
         if question == 'n'.lower():
             print("Thank you for using kologram")
+            main()
             return False
         print(f"Invalid input: '{question}'. Please type y or n")
 
@@ -283,9 +302,9 @@ def main():
             print("Savings block is opening ...\n")
         elif option == 3:
             print("Project overview loading ...\n")
+            project_overview()
         else:
             print(f"Option is Incorrect. {option_criteria}\n")
 
 
 main()
-
