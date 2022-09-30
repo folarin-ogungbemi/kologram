@@ -169,14 +169,13 @@ def kolo_day():
             # serialize datetime into JSON
             date_dump = json.dumps(credit_date, default=str)
             main_dump = date_dump.strip('"')
-            account = [main_dump, kolo_amount]
-            main = [account]
+            account = [[main_dump, kolo_amount]]
             # from Google sheets API
             S_VALUES.append(spreadsheetId=SHEET_ID,
                             range="Car!C5:D5",
                             valueInputOption="USER_ENTERED",
                             insertDataOption='INSERT_ROWS',
-                            body={"values": main}).execute()
+                            body={"values": account}).execute()
 
             print("Your koloproject has been updated\n")
             return False
