@@ -77,7 +77,6 @@ def project_overview():
     print("----------------------------------------------------------")
         
 
-
 def list_of_projects():
     """
     Prints the list of projects
@@ -93,6 +92,7 @@ def list_of_projects():
     print("------ My Existing Projects ------")
     print(pandas.DataFrame(my_projects_list[1:]))
     print("----------------------------------\n")
+    return my_projects_list
 
 
 def project_search(my_project):
@@ -100,6 +100,7 @@ def project_search(my_project):
     Prints the list of projects
     search out project from list
     """
+    my_projects_list = list_of_projects()
     print("Choose desired project from above list")
     my_project = input("Enter project name here: ").capitalize()
     i = 1
