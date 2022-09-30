@@ -212,11 +212,19 @@ def calculate_outstanding_amount():
     deduct total amount from budget
     update outstanding
     """
+    total_amount = 0
     # Code from Google sheet API
     # Collect kolo_amount
     response = S_VALUES.get(spreadsheetId=SHEET_ID, 
                             range="Car!D6:D500").execute()
     values = response.get('values', [])
-    print(values)
+    for value in values:
+        # code from Tutorial by Eyehunt
+        s = [str(integer) for integer in value]
+        str_amount = "".join(s)
+        int_amount = int(str_amount)
+        total_amount += int_amount
+   
+    print(total_amount)
 
 calculate_outstanding_amount()
