@@ -247,3 +247,17 @@ while option != 0:
     print("3. See project overview")
     print("0. Exit kologram\n")
     option = int(input("Choose an option: "))
+
+    # Executing users input
+    if option == 0:
+        print("kologram is now exiting...")
+        print("Goodbye")
+        break
+    if option == 1:
+        print("Starting program ...\n")
+    elif option == 2:
+        print("Savings block is opening ...\n")
+    elif option == 3:
+        print("Project overview loading ...\n")
+    else:
+        print(f"Option is Incorrect. {CRITERIA}\n")
