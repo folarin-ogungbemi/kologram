@@ -165,6 +165,25 @@ def kolo_day():
         question = input("Would you like to Kolo today (y/n): ")
         if question == 'y'.lower():
             kolo_amount = input("Enter contribution amount: ")
+            # Enter date the account was credited
+            credit_date = datetime.date.today()
+            # serialize datetime into JSON
+            date_dump = json.dumps(credit_date, default=str)
+            main_dump = date_dump.strip('"')
+            account = [main_dump, kolo_amount]
+            main = [account]
+            print("//////////////")
+            print(account)
+            print(main)
+            print("//////////////")
+            # from Google sheets API
+            request = VALUES.append(spreadsheetId=SHEET_ID, 
+                                range="Car!C5:D5", 
+                                valueInputOption="USER_ENTERED", 
+                                insertDataOption='INSERT_ROWS', 
+                                body={"values":main})
+            response = request.execute()
+
             kolo_list.append(kolo_amount)
             for kolo in kolo_list:
                 total_savings += float(kolo)
@@ -178,8 +197,8 @@ def kolo_day():
             print("Thank you for using kologram")
             return False
         print(f"Invalid input: '{question}'. Please type y or n")
-    
 
+        
 def kolo_table(project_name):
     """
     Creates an account for each contribution made
@@ -196,7 +215,7 @@ def kolo_table(project_name):
 
     project.update_cells(heads)
 
-    # kolo_day()
+    kolo_day()
 
 
 project_starter()
