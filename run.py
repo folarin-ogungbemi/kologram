@@ -25,7 +25,7 @@ GSPREAD_USER = gspread.authorize(CREDS_SCOPE)
 SHEET = GSPREAD_USER.open('kologram')
 SHEET_ID = '10X1NwBvz4pvtKHfrLJvz0I0h-4QBr_I2NYH5IChiPME'
 SERVICE = build('sheets', 'v4', credentials=CREDS)
-VALUES = SERVICE.spreadsheets().values()
+S_VALUES = SERVICE.spreadsheets().values()
 
 
 def project_starter():
@@ -63,7 +63,7 @@ def project_starter():
 
     print("-------------------- Project Overview --------------------")
     # Code idea from Google sheets API
-    result = VALUES.get(spreadsheetId=SHEET_ID, range=project_name+"!F2:J3")
+    result = S_VALUES.get(spreadsheetId=SHEET_ID, range=project_name+"!F2:J3")
     response = result.execute()
     values = response.get('values', [])
     print(pandas.DataFrame(values))
@@ -164,7 +164,7 @@ def kolo_day():
     while True:
         question = input("Would you like to Kolo today (y/n): ")
         if question == 'y'.lower():
-            kolo_amount = input("Enter contribution amount: ")
+            kolo_amount = float(input("Enter contribution amount: "))
             # Enter date the account was credited
             credit_date = datetime.date.today()
             # serialize datetime into JSON
@@ -172,17 +172,12 @@ def kolo_day():
             main_dump = date_dump.strip('"')
             account = [main_dump, kolo_amount]
             main = [account]
-            print("//////////////")
-            print(account)
-            print(main)
-            print("//////////////")
             # from Google sheets API
-            request = VALUES.append(spreadsheetId=SHEET_ID, 
-                                range="Car!C5:D5", 
-                                valueInputOption="USER_ENTERED", 
-                                insertDataOption='INSERT_ROWS', 
-                                body={"values":main})
-            response = request.execute()
+            S_VALUES.append(spreadsheetId=SHEET_ID,
+                            range="Car!C5:D5",
+                            valueInputOption="USER_ENTERED",
+                            insertDataOption='INSERT_ROWS',
+                            body={"values": main}).execute()
 
             kolo_list.append(kolo_amount)
             for kolo in kolo_list:
@@ -198,7 +193,7 @@ def kolo_day():
             return False
         print(f"Invalid input: '{question}'. Please type y or n")
 
-        
+
 def kolo_table(project_name):
     """
     Creates an account for each contribution made
