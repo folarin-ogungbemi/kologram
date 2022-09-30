@@ -57,6 +57,7 @@ def project_starter():
     kolo_budget(project)
     kolo_date(project)
     calculate_due_date(project)
+    kolo_table(project_name)
 
     print(f"Your '{project_name}' koloproject has been succesfully created\n")
 
@@ -153,8 +154,6 @@ def validate_project_budget(budget, data):
     return True
 
 
-# project_starter()
-
 def kolo_day():
     """
     Ask if user wants to save today
@@ -181,4 +180,23 @@ def kolo_day():
         print(f"Invalid input: '{question}'. Please type y or n")
     
 
-kolo_day()
+def kolo_table(project_name):
+    """
+    Creates an account for each contribution made
+    """
+    #####################
+    # Add table heading #
+    #####################
+    heading = ("DATE", "ANOUNT")
+    project = SHEET.worksheet(project_name)
+    heads = project.range('C5:D5')
+
+    for i, head in enumerate(heading):
+        heads[i].value = head
+
+    project.update_cells(heads)
+
+    # kolo_day()
+
+
+project_starter()
