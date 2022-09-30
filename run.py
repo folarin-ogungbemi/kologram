@@ -103,7 +103,6 @@ def project_search():
     search out project from list
     """
     my_projects = SHEET.worksheets()
-
     # collect created projects 
     my_projects_list = []
     for project in my_projects:
@@ -176,6 +175,83 @@ def calculate_due_date(data):
             data.update('I3', date_dump.strip('"')+" days")
             break
 
+def kolo_table(project_name):
+    """
+    Creates an account for each contribution made
+    """
+    #####################
+    # Add table heading #
+    #####################
+    heading = ("DATE", "AMOUNT")
+    project = SHEET.worksheet(project_name)
+    heads = project.range('C5:D5')
+
+    for i, head in enumerate(heading):
+        heads[i].value = head
+
+    project.update_cells(heads)
+
+    kolo_day()
+
+
+def kolo_day():
+    """
+    Ask if user wants to save today
+    Get users periodic contribution data
+    """
+    while True:
+        question = input("Would you like to Kolo today (y/n): ")
+        if question == 'y'.lower():
+            my_project = project_search()
+            if my_project == "None":
+                print("\nThe project you entered does not exist!!")
+                print("Please check your project list and try again")
+            else:
+                kolo_amount = float(input("Enter contribution amount: "))
+                # Enter date the account was credited
+                credit_date = datetime.date.today()
+                # serialize datetime into JSON
+                date_dump = json.dumps(credit_date, default=str)
+                main_dump = date_dump.strip('"')
+                account = [[main_dump, kolo_amount]]
+                # from Google sheets API
+                S_VALUES.append(spreadsheetId=SHEET_ID,
+                                range=my_project+"!C5:D5",
+                                valueInputOption="USER_ENTERED",
+                                insertDataOption='INSERT_ROWS',
+                                body={"values": account}).execute()
+                print("Your koloproject has been updated\n")
+            return False
+        if question == 'n'.lower():
+            print("Thank you for using kologram")
+            return False
+        print(f"Invalid input: '{question}'. Please type y or n")
+
+
+def calculate_outstanding_amount(budget):
+    """
+    collects data from account history
+    deduct total amount from budget
+    update outstanding
+    """
+    total_amount = 0
+    # Code from Google sheet API
+    # Collect kolo_amount
+    response = S_VALUES.get(spreadsheetId=SHEET_ID,
+                            range="Car!D6:D500").execute()
+    values = response.get('values', [])
+    for value in values:
+        # code from Tutorial by Eyehunt
+        s_list = [str(integer) for integer in value]
+        str_amount = "".join(s_list)
+        int_amount = int(str_amount)
+        total_amount += int_amount
+
+    outstanding = [[int(budget) - total_amount]]
+    S_VALUES.update(spreadsheetId=SHEET_ID,
+                    range="Car!J3",
+                    valueInputOption='USER_ENTERED',
+                    body={"values": outstanding}).execute()
 
 def validate_project_due_date(data):
     """
@@ -225,86 +301,6 @@ def validate_project_budget(budget, data):
         print(f"Invalid Data: {err}, please try again.")
         return False
     return True
-
-
-def kolo_day():
-    """
-    Ask if user wants to save today
-    Get users periodic contribution data
-    """
-    while True:
-        question = input("Would you like to Kolo today (y/n): ")
-        if question == 'y'.lower():
-            my_project = project_search()
-            if my_project == "None":
-                print("\nThe project you entered does not exist!!")
-                print("Please check your project list and try again")
-            else:
-                kolo_amount = float(input("Enter contribution amount: "))
-                # Enter date the account was credited
-                credit_date = datetime.date.today()
-                # serialize datetime into JSON
-                date_dump = json.dumps(credit_date, default=str)
-                main_dump = date_dump.strip('"')
-                account = [[main_dump, kolo_amount]]
-                # from Google sheets API
-                S_VALUES.append(spreadsheetId=SHEET_ID,
-                                range=my_project+"!C5:D5",
-                                valueInputOption="USER_ENTERED",
-                                insertDataOption='INSERT_ROWS',
-                                body={"values": account}).execute()
-                print("Your koloproject has been updated\n")
-            return False
-        if question == 'n'.lower():
-            print("Thank you for using kologram")
-            return False
-        print(f"Invalid input: '{question}'. Please type y or n")
-
-
-def kolo_table(project_name):
-    """
-    Creates an account for each contribution made
-    """
-    #####################
-    # Add table heading #
-    #####################
-    heading = ("DATE", "AMOUNT")
-    project = SHEET.worksheet(project_name)
-    heads = project.range('C5:D5')
-
-    for i, head in enumerate(heading):
-        heads[i].value = head
-
-    project.update_cells(heads)
-
-    kolo_day()
-
-
-def calculate_outstanding_amount(budget):
-    """
-    collects data from account history
-    deduct total amount from budget
-    update outstanding
-    """
-    total_amount = 0
-    # Code from Google sheet API
-    # Collect kolo_amount
-    response = S_VALUES.get(spreadsheetId=SHEET_ID,
-                            range="Car!D6:D500").execute()
-    values = response.get('values', [])
-    for value in values:
-        # code from Tutorial by Eyehunt
-        s_list = [str(integer) for integer in value]
-        str_amount = "".join(s_list)
-        int_amount = int(str_amount)
-        total_amount += int_amount
-
-    outstanding = [[int(budget) - total_amount]]
-    S_VALUES.update(spreadsheetId=SHEET_ID,
-                    range="Car!J3",
-                    valueInputOption='USER_ENTERED',
-                    body={"values": outstanding}).execute()
-
 
 # kologram Main program
 def main():
