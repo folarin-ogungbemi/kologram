@@ -90,5 +90,15 @@ Kologram intends to make best use of users' data and provide them with every nec
 # Credits
 
 ## Code
+* The turorial from [Code Institute](https://learn.codeinstitute.net/ci_program/diplomainfullstacksoftwarecommoncurriculum "Visit Code Institute") was the most helpful link from the writing of code to the deployment of the program.
+* [Edx](https://www.edx.org/ "Link to edx") CS50's Web Programming with Python and JavaScript helpful resource in understanding concepts of javascript.
+* Helpful code from  [PyNative](https://pynative.com/python-serialize-datetime-into-json/ "Visit PyNative website") in deciphering Object of type datetime is not JSON serializable.
+* Helpful ideas from  [Stack Overflow](https://stackoverflow.com/questions/61180835/typeerror-an-integer-is-required-got-type-tuple-datetime-python "Visit Stack overflow") code for solving TypeError: an integer is required (got type tuple) datetime Python
+* Helpful Documentation  [Google Sheet API](https://developers.google.com/ "Visit google sheet API website") to get, update, and append data to and from googlesheets.
+* Helpful idea and [Computer Science](https://youtu.be/AnKc74fWYCg "Visit youtube channel") code in creating main page navigation.
+* Helpful idea and [Eyehunts](https://tutorial.eyehunts.com/python/convert-list-to-int-python-example-code/#:~:text=Example%20convert%20list%20to%20int%20Python%20Simple%20example,%3D%20int%20%28a_string%29%20print%20%28res%29%20print%20%28type%20%28res%29%29 "Visit Eyehunt code") code in converting list to int.
 
-## Content
+## Acknowledgement 
+My sincere appreciation goes to :
+* To my able mentor Ronan, that always come through for me. Thank you always for providing me with relevant tips and information to build these websites.
+* To my partner, Mo, for giving her attention at the time of need.
