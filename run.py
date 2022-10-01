@@ -140,10 +140,8 @@ def calculate_due_date(data):
     while True:
         print("Enter project due date like so: year, month, day.")
         print("Example: 2022,9,26\n")
-        try:
-            project_due_date = input("Enter project due date:\n").split(",")
-        except ValueError:
-            print("The Date you entered is Invalid. Try again!")
+
+        project_due_date = input("Enter project due date:\n")
         current_date = datetime.date.today()
         if validate_project_due_date(project_due_date):
             split_date = project_due_date
@@ -195,6 +193,8 @@ def kolo_day():
                 print("\nThe project you entered does not exist!!")
                 print("Please check your project list and try again")
             else:
+                print("\nSaving to your project. Please Enter digits")
+                print("Example: 123456789 or 123.4567\n")
                 try:
                     kolo_amount = float(input("Enter contribution amount:\n"))
                 except ValueError:
