@@ -10,6 +10,9 @@ Kologram is a simple project tracker programmed majorly with the use of Python p
 # Features
 
 ## Existing Features
+* Application Navigation option.
+    * The application allows user to view and select from options available for navigation purposes. These options are present at the main page and pops up at relevant times during use of application.
+    ![kologram main](./assets/images/kologram%20navigation-c.png "view image")
 
 ## Features left to be implemented
 
