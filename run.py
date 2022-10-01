@@ -88,7 +88,7 @@ def project_search():
     """
     my_projects = SHEET.worksheets()
     # collect created projects in a list
-    my_projects_list = []
+    my_projects_list = []  # Empty list to hold strings
     for project in my_projects:
         projects = project.title
         my_projects_list.append(projects)
@@ -144,7 +144,7 @@ def calculate_due_date(data):
             project_due_date = input("Enter project due date:\n")
             current_date = datetime.date.today()
             split_date = project_due_date.split(",")
-            dated_list = []
+            dated_list = []  # Empty list to hold numbers
             for i in split_date:
                 my_int = int(i)
                 dated_list.append(my_int)
@@ -152,6 +152,7 @@ def calculate_due_date(data):
             dated_tup = tuple(dated_list)
             # *args idea from stackoverflow
             due_date = datetime.date(*dated_tup)
+            # calculate days left till end of project
             days_left = abs(current_date - due_date).days
             # json.dumps idea from PYnative
             # serialize datetime into JSON
@@ -239,6 +240,7 @@ def calculate_outstanding_amount(project):
                             range=project+"!H3").execute()
     breq_list = brequest.get('values', [])
     for breq in breq_list:
+        # convert breq_list to string
         b_list = [str(integer) for integer in breq]
         budget = "".join(b_list)
 
@@ -250,11 +252,12 @@ def calculate_outstanding_amount(project):
     values = response.get('values', [])
     for value in values:
         # code from Tutorial by Eyehunt
+        # convert breq_list to integer
         s_list = [str(integer) for integer in value]
         str_amount = "".join(s_list)
         int_amount = int(str_amount)
         total_amount += int_amount
-
+    # calculate Amount outstanding
     outstanding = [[int(budget) - total_amount]]
     S_VALUES.update(spreadsheetId=SHEET_ID,
                     range=project+"!J3",
