@@ -82,23 +82,6 @@ def project_overview():
         print("----------------------------------------------------------")
 
 
-def list_of_projects():
-    """
-    Prints the list of projects
-    """
-    my_projects = SHEET.worksheets()
-
-    # collect created projects
-    my_projects_list = []
-    for project in my_projects:
-        projects = project.title
-        my_projects_list.append(projects)
-
-    print("\n------ My Existing Projects ------")
-    print(pandas.DataFrame(my_projects_list[1:]))
-    print("----------------------------------\n")
-
-
 def project_search():
     """
     Prints the list of projects
@@ -110,7 +93,11 @@ def project_search():
     for project in my_projects:
         projects = project.title
         my_projects_list.append(projects)
-    list_of_projects()
+
+    print("\n------ My Existing Projects ------")
+    print(pandas.DataFrame(my_projects_list[1:]))
+    print("----------------------------------\n")
+
     print("Choose desired project from above list")
     my_project = input("Enter project name here:\n").capitalize()
     i = 0
@@ -170,6 +157,7 @@ def calculate_due_date(data):
             # *args idea from stackoverflow
             due_date = datetime.date(*dated_tup)
             days_left = abs(current_date - due_date).days
+            # json.dumps idea from PYnative
             # serialize datetime into JSON
             date_dump = json.dumps(days_left, default=str)
             data.update('I3', date_dump.strip('"')+" days")
@@ -211,6 +199,7 @@ def kolo_day():
                 kolo_amount = float(input("Enter contribution amount:\n"))
                 # Enter date the account was credited
                 credit_date = datetime.date.today()
+                # json.dumps idea from PYnative
                 # serialize datetime into JSON
                 date_dump = json.dumps(credit_date, default=str)
                 main_dump = date_dump.strip('"')
