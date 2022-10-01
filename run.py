@@ -194,7 +194,12 @@ def kolo_day():
                 print("\nThe project you entered does not exist!!")
                 print("Please check your project list and try again")
             else:
-                kolo_amount = float(input("Enter contribution amount:\n"))
+                try:
+                    kolo_amount = float(input("Enter contribution amount:\n"))
+                except ValueError:
+                    print("You entered an Invalid data!")
+                    print("You can try again later\n")
+                    return False
                 # Enter date the account was credited
                 credit_date = datetime.date.today()
                 # json.dumps idea from PYnative
