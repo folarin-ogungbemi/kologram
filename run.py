@@ -133,7 +133,6 @@ def kolo_budget(data):
         project_budget = input("Enter your estimated budget for the project: ")
         if validate_project_budget(project_budget, data):
             print("Data is valid!\n")
-            calculate_outstanding_amount()
             break
 
 
@@ -221,7 +220,7 @@ def kolo_day():
                                 valueInputOption="USER_ENTERED",
                                 insertDataOption='INSERT_ROWS',
                                 body={"values": account}).execute()
-                calculate_outstanding_amount()
+                calculate_outstanding_amount(my_project)
                 print("Your koloproject has been updated\n")
             return False
         if question == 'n'.lower():
@@ -230,7 +229,7 @@ def kolo_day():
         print(f"Invalid input: '{question}'. Please type y or n")
 
 
-def calculate_outstanding_amount():
+def calculate_outstanding_amount(project):
     """
     collects data from account history
     deduct total amount from budget
@@ -238,7 +237,7 @@ def calculate_outstanding_amount():
     """
     # Get project budget value from spreadsheet
     brequest = S_VALUES.get(spreadsheetId=SHEET_ID,
-                            range="Car!H3").execute()
+                            range=project+"!H3").execute()
     breq_list = brequest.get('values', [])
     for breq in breq_list:
         b_list = [str(integer) for integer in breq]
@@ -248,7 +247,7 @@ def calculate_outstanding_amount():
     # Code from Google sheet API
     # Collect kolo_amount
     response = S_VALUES.get(spreadsheetId=SHEET_ID,
-                            range="Car!D6:D500").execute()
+                            range=project+"!D6:D500").execute()
     values = response.get('values', [])
     for value in values:
         # code from Tutorial by Eyehunt
