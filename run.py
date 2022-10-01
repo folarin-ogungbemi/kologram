@@ -140,11 +140,10 @@ def calculate_due_date(data):
     while True:
         print("Enter project due date like so: year, month, day.")
         print("Example: 2022,9,26\n")
-
-        project_due_date = input("Enter project due date:\n")
-        current_date = datetime.date.today()
-        if validate_project_due_date(project_due_date):
-            split_date = project_due_date
+        try:
+            project_due_date = input("Enter project due date:\n")
+            current_date = datetime.date.today()
+            split_date = project_due_date.split(",")
             dated_list = []
             for i in split_date:
                 my_int = int(i)
@@ -158,7 +157,13 @@ def calculate_due_date(data):
             # serialize datetime into JSON
             date_dump = json.dumps(days_left, default=str)
             data.update('I3', date_dump.strip('"')+" days")
-            break
+            return True
+        except NameError:
+            print("Invalid data! See Example above\n")
+        except TypeError:
+            print("Invalid data! See Example above\n")
+        except ValueError:
+            print("Invalid data! See Example above\n")
 
 
 def kolo_table(project_name):
@@ -255,21 +260,6 @@ def calculate_outstanding_amount(project):
                     range=project+"!J3",
                     valueInputOption='USER_ENTERED',
                     body={"values": outstanding}).execute()
-
-
-def validate_project_due_date(data):
-    """
-    Try checks user input.
-    If user input is invalid, user corrects input
-    """
-    try:
-        if len(data) > 10:
-            raise TypeError(f"You entered too many values, {data}")
-    except TypeError as err:
-        print(f"\nInvalid data:{err}")
-        print("Please try again!\n")
-        return False
-    return True
 
 
 def validate_project_name(name):
