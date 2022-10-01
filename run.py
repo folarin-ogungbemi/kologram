@@ -253,10 +253,10 @@ def calculate_outstanding_amount(project):
         # convert breq_list to integer
         s_list = [str(integer) for integer in value]
         str_amount = "".join(s_list)
-        int_amount = int(str_amount)
+        int_amount = float(str_amount)
         total_amount += int_amount
     # calculate Amount outstanding
-    outstanding = [[int(budget) - total_amount]]
+    outstanding = [[float(budget) - total_amount]]
     S_VALUES.update(spreadsheetId=SHEET_ID,
                     range=project+"!J3",
                     valueInputOption='USER_ENTERED',
