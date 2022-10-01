@@ -309,9 +309,9 @@ def main():
     while True:
         # Introduction text
         print("\nWelcome to kologram, your simple project tracker")
-        print("This project helps you to keep track of  \
-            your periodic contributions of your desired project.")
-        ("Kolo, A word well known to Nigerians as a private 'Savings Box'.\n")
+        print("This project helps you to keep track of contributions")
+        print("to achieve your desired desired project.")
+        print("Kolo, A word known to Nigerians as a private 'Savings Box'.\n")
         # Create the option  menu
         option_criteria = "Please choose option 0, 1, 2 or 3"
         print(f"To begin, {option_criteria}")
