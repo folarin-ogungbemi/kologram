@@ -26,8 +26,21 @@ Kologram is a simple project tracker programmed majorly with the use of Python p
     ![kologram project overview](./assets/images/project%20overview-c.png "view image")
 
 ## Features left to be implemented
+Kologram intends to make best use of users' data and provide them with every necessary feature to keep track of their project. such features may include processing of data to better usage. include ways of adding notifications and improve the GUI for users convenience.
 
 ## Design
+* Google Sheets API
+    * The Application uses googlesheets API to keep users data. This makes it possible to view project status at any point in time and keep track of the amount outstanding.
+* Pandas Module
+    * The Application uses pandas module installed in python to display project overview, and existing projects in a much data-like fashion
+* Python Input Command
+    * Input questions to collect users data
+* Python operations 
+    * Calculation of dates to derive number of days left for project
+    * Calculation to derive project outstanding amounts
+* python print statements 
+    * Print statements used to provide useful informatuíons to user
+    * Print statement used to structure app pages
 
 ## Limitations
 
