@@ -61,6 +61,7 @@ def project_starter():
 
     print(f"Your '{project_name}' koloproject has been succesfully created\n")
 
+
 def project_overview():
     """
     See project overview
@@ -78,7 +79,7 @@ def project_overview():
         values = response.get('values', [])
         print(pandas.DataFrame(values))
         print("----------------------------------------------------------")
-        
+
 
 def list_of_projects():
     """
@@ -92,7 +93,7 @@ def list_of_projects():
         projects = project.title
         my_projects_list.append(projects)
 
-    print("------ My Existing Projects ------")
+    print("\n------ My Existing Projects ------")
     print(pandas.DataFrame(my_projects_list[1:]))
     print("----------------------------------\n")
 
@@ -119,6 +120,7 @@ def project_search():
             return project_found
         i += 1
     return project_found
+
 
 def kolo_budget(data):
     """
@@ -165,15 +167,14 @@ def calculate_due_date(data):
                 dated_list.append(my_int)
             # convert dated_list to tuple
             dated_tup = tuple(dated_list)
-            print(dated_tup)
             # *args idea from stackoverflow
             due_date = datetime.date(*dated_tup)
-            print(due_date)
             days_left = abs(current_date - due_date).days
             # serialize datetime into JSON
             date_dump = json.dumps(days_left, default=str)
             data.update('I3', date_dump.strip('"')+" days")
             break
+
 
 def kolo_table(project_name):
     """
@@ -220,6 +221,7 @@ def kolo_day():
                                 valueInputOption="USER_ENTERED",
                                 insertDataOption='INSERT_ROWS',
                                 body={"values": account}).execute()
+                calculate_outstanding_amount()
                 print("Your koloproject has been updated\n")
             return False
         if question == 'n'.lower():
@@ -234,13 +236,13 @@ def calculate_outstanding_amount():
     deduct total amount from budget
     update outstanding
     """
+    # Get project budget value from spreadsheet
     brequest = S_VALUES.get(spreadsheetId=SHEET_ID,
                             range="Car!H3").execute()
     breq_list = brequest.get('values', [])
     for breq in breq_list:
         b_list = [str(integer) for integer in breq]
         budget = "".join(b_list)
-    print(budget)
 
     total_amount = 0
     # Code from Google sheet API
@@ -260,6 +262,7 @@ def calculate_outstanding_amount():
                     range="Car!J3",
                     valueInputOption='USER_ENTERED',
                     body={"values": outstanding}).execute()
+
 
 def validate_project_due_date(data):
     """
@@ -309,6 +312,7 @@ def validate_project_budget(budget, data):
         print(f"Invalid Data: {err}, please try again.")
         return False
     return True
+
 
 # kologram Main program
 def main():
