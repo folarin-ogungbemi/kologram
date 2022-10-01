@@ -84,13 +84,13 @@ The following steps were carried out in testing the validity of the source code 
 
 ## Validator testing
 Because the [pep8online.com](http://pep8online.com/ "link to pep8online") validator is currently down as at the time of project creation. An alternative method of installing **pycodestyle** was used to validate code. The result shows no significant errors were found.
-    * [pycodestyle result](./assets/images/error%20check%20koloproject.png "View image")
+* [pycodestyle result](./assets/images/error%20check%20koloproject.png "View image")
 
 ## High Level Testing
-
-## Fixed Bugs
-
-## Unfixed Bugs
+The program was tested on different scale for error testing. 
+* Test input validation for possible errors. no errors found
+* values in spreadsheet in correct place
+* data value results are as expected
 
 ---
 # Deployment
