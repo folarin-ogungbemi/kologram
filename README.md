@@ -64,6 +64,27 @@ Kologram intends to make best use of users' data and provide them with every nec
 ---
 
 # Technologies
+* [Python](https://www.python.org/ "Link to Python main-page")
+    * Python programming language
+* [pandas](https://pandas.pydata.org/ "Link to Pandas main-page")
+    * Pandas module, python data analysis module library
+* [Google Cloud](https://console.cloud.google.com/ "Link to Google main-page")
+    * Google Cloud platform used for the creation of Google drive and Google sheets API linked with the Application
+    * Google spreadsheet
+    * Google Drive
+* [Github](https://github.com "Link to Github main-page")
+    * Github is the site used for the commiting and storing of application codes.
+* [Heroku Cloud](https://id.heroku.com/ "Link to Heroku login page")
+    * Heroku cloud platform is used for the deployment and hosting of program.
+* [Gitpod](https://www.gitpod.io "Link to Gitpod main-page")
+    * Gitpod is the open-source developer platform used in tandem with github for the deployment of the website source code.
+* [Visual Studio code](https://code.visualstudio.com "Link to visual studio code main-page")
+    * The Integrated development environment(IDE) used for the writing of source code.
+* [TinyJPG](https://tinyjpg.com/ "Link to TinyJPG main-page")
+    * Website used for the compression of images used in the website.
+* [Techsini](https://techsini.com/multi-mockup/index.php "Link to website main-page")
+    * The Mock-up generator website used for creating the website mock-up image.
+
 
 ---
 # Credits
