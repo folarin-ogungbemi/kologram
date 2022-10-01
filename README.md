@@ -11,8 +11,19 @@ Kologram is a simple project tracker programmed majorly with the use of Python p
 
 ## Existing Features
 * Application Navigation option.
-    * The application allows user to view and select from options available for navigation purposes. These options are present at the main page and pops up at relevant times during use of application.
+    * The application allows user to view and select from the options available for navigation purposes. These options are present at the main page and pops up at relevant times during use of application.
     ![kologram main](./assets/images/kologram%20navigation-c.png "view image")
+* Input Validation.
+    * The application checks for user errors during inputing of data and provide possible ways to help get or add data.
+    ![kologram validation](./assets/images/validate%20input-c.png "view image")
+* Project Overview.
+    * The application also allows user to view their project status. Including:
+        * Date the project was created
+        * Name of project
+        * Estimated budget created at the start of the project
+        * Project due date converted to days countdown
+        * Project Outstandings
+    ![kologram project overview](./assets/images/project%20overview-c.png "view image")
 
 ## Features left to be implemented
 
