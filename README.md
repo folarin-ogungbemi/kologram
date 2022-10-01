@@ -66,7 +66,7 @@ To start this project, It is recommended to use the [template](https://github.co
 1. Navigate to "Use this template" on the page.
     * click on the button
 1. Navigate to "repostory name"
-    * Enter a name for your repository to continue (e.g Milestone project-1)
+    * Enter a name for your repository to continue (e.g my-project)
     * You may enter a description for the project. (Not mandatory)
     * keep your repository checked "public" for assessment purposes.
     * Then click on the button "Create repository from template".
@@ -78,7 +78,6 @@ To start this project, It is recommended to use the [template](https://github.co
         * Navigate to the green button titled **Gitpod**
         * The creation of an environment might take a while. wait for gitpod to set up your environment.
         * It is important to pin your worksheet in Gitpod Dashboard and load subsequent opening of this project from the dashboard in order to keep all installed creds intact.
-1. Now we should have the [IDE](https://folarinogun-milestonepr-kf64x2mo04v.ws-eu63.gitpod.io/ "click to view interface") created.
     1. Here we have Visual Studio code as IDE.
         * By default, on the left side-bar is the respository we created in github including an already made README.md file, package.json, requirements.txt and run.py etc.
             * A mouse right click in this panel area gives us option to create new files and or folders in this repository.
@@ -103,7 +102,7 @@ To start this project, It is recommended to use the [template](https://github.co
 ## Heroku Deployment 
 
 Heroku is the hosting platform for the project and to deploy, The following steps were strictly taken:
-[Heroku Address](https://github.com/folarin-ogungbemi/twain-land.git "visit heroku address")
+[Heroku Address](https://id.heroku.com/ "visit heroku address")
 * Sign in to Heroku, otherwise create an account
 * From Heroku Dashboard, 
     * click **Create new app**
