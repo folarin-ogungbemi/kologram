@@ -222,7 +222,7 @@ def kolo_day():
                                 insertDataOption='INSERT_ROWS',
                                 body={"values": account}).execute()
                 calculate_outstanding_amount(my_project)
-                print("Your koloproject has been updated\n")
+                print("\nYour koloproject has been updated\n")
             return False
         if question == 'n'.lower():
             print("Thank you for using kologram")
@@ -337,7 +337,7 @@ def main():
         # Executing users input
         if option == 0:
             print("kologram is now exiting...")
-            print("Goodbye")
+            print("Goodbye\n")
             break
         if option == 1:
             print("Starting program ...\n")
