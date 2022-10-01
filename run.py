@@ -309,7 +309,7 @@ def main():
     """
     option = None  # This will be the user's service preference
     # Code idea from Computer science, Youtube
-    while option != 0:
+    while True:
         # Create the option  menu
         option_criteria = "Please choose option 0, 1, 2 or 3"
         print("\nWelcome to kologram, your simple project tracker")
@@ -319,8 +319,10 @@ def main():
         print("2. Save today")
         print("3. See project overview")
         print("0. Exit kologram\n")
-        option = int(input("Choose an option:\n"))
-
+        try:
+            option = int(input("Choose an option:\n"))
+        except ValueError:
+            print("Invalid Input.")
         # Executing users input
         if option == 0:
             print("kologram is now exiting...")
