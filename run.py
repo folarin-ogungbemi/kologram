@@ -276,12 +276,12 @@ def validate_project_name(name):
     suggest = "unique attributes"
     try:
         SHEET.add_worksheet(name, "500", "15")
-    except gspread.exceptions.APIError as error:
+    except gspread.exceptions.APIError:
         my_projects = SHEET.worksheets()
         for exist in my_projects:
             if exist.title == name:
                 print(f"Koloproject '{name}' already exist")
-                print(f"Invalid data: {error}\n")
+                print(f"Invalid data: Please try again\n")
                 print(f"Use a prefix e.g: Second-{name} or {name} {suggest}\n")
                 return False
     return True
@@ -296,9 +296,9 @@ def validate_project_budget(budget, data):
     try:
         convert = float(budget)
         data.update('H3', convert)
-    except ValueError as err:
-        print(f"Budget is expected in Digits, you entered {budget}")
-        print(f"Invalid Data: {err}, please try again.")
+    except ValueError:
+        print(f"Budget is expected in Digits, you entered '{budget}'")
+        print("Invalid Data, please try again.")
         return False
     return True
 
