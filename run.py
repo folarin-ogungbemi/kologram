@@ -131,8 +131,8 @@ def kolo_budget(data):
         print("Enter budget in numbers or decimals")
         print("For Example: '1234567890', '123.456'\n")
 
-        project_budget = input("Enter your estimated budget for the project:\n")
-        if validate_project_budget(project_budget, data):
+        pro_budget = input("Enter your estimated budget for the project:\n")
+        if validate_project_budget(pro_budget, data):
             print("Data is valid!\n")
             break
 
