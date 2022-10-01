@@ -83,6 +83,8 @@ The following steps were carried out in testing the validity of the source code 
 
 
 ## Validator testing
+Because the [pep8online.com](http://pep8online.com/ "link to pep8online") validator is currently down as at the time of project creation. An alternative method of installing **pycodestyle** was used to validate code. The result shows no significant errors were found.
+    * [pycodestyle result](./assets/images/error%20check%20koloproject.png "View image")
 
 ## High Level Testing
 
@@ -92,6 +94,9 @@ The following steps were carried out in testing the validity of the source code 
 
 ---
 # Deployment
+The project itself relies on googlesheets. It is expected that user have a google account and set up their credentials in google clouds for seamless connection to application.
+Below is a video from a youtuber giving guide on a quick set up.
+[Tech With Me](https://youtu.be/7YS6YDQKFh0 "Tech with me youtube link")
 
 ## Project Creation
 
