@@ -43,6 +43,8 @@ Kologram intends to make best use of users' data and provide them with every nec
     * Print statement used to structure app pages
 
 ## Limitations
+* Application is a terminal program and hence, it is limited by these possibity. Applications best behaviour is on a desktop or keyboard type computers.
+* Screen size is default to heroku's deployment.
 
 ---
 # Testing
