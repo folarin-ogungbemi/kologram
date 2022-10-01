@@ -58,6 +58,7 @@ def project_starter():
     kolo_date(project)
     calculate_due_date(project)
     kolo_table(project_name)
+    calculate_outstanding_amount(project_name)
 
     print(f"Your '{project_name}' koloproject has been succesfully created\n")
 
