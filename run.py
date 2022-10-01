@@ -131,7 +131,7 @@ def kolo_budget(data):
         project_budget = input("Enter your estimated budget for the project: ")
         if validate_project_budget(project_budget, data):
             print("Data is valid!\n")
-            calculate_outstanding_amount(project_budget)
+            calculate_outstanding_amount()
             break
 
 
@@ -228,12 +228,20 @@ def kolo_day():
         print(f"Invalid input: '{question}'. Please type y or n")
 
 
-def calculate_outstanding_amount(budget):
+def calculate_outstanding_amount():
     """
     collects data from account history
     deduct total amount from budget
     update outstanding
     """
+    brequest = S_VALUES.get(spreadsheetId=SHEET_ID,
+                            range="Car!H3").execute()
+    breq_list = brequest.get('values', [])
+    for breq in breq_list:
+        b_list = [str(integer) for integer in breq]
+        budget = "".join(b_list)
+    print(budget)
+
     total_amount = 0
     # Code from Google sheet API
     # Collect kolo_amount
@@ -341,3 +349,7 @@ def main():
 
 
 main()
+
+
+
+
