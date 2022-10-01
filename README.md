@@ -1,31 +1,44 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# Kologram
 
-Welcome Folarin Ogungbemi,
+## Introduction
+Kologram is a simple project tracker programmed majorly with the use of Python programming language in connection with google sheets API to keep track of users' interested projects and store user data in google sheets. The Word Kologram is coined from the word kolo, A word well known to Nigerians as a private "Savings Box". The Application kologram intends to imitate this usage. Kologram allows its user to interact with the program by providing navigation options and input questions to collect user data. Through the usage of kologram, users are expected to better track their desired projects and contributions towards it.
+[Link to live website]( "visit website")
 
-This is the Code Institute student template for deploying your third portfolio project, the Python command-line project. The last update to this file was: **August 17, 2021**
+![Kologram]( "Kologram Mockup")
 
-## Reminders
+---
+# Features
 
-* Your code must be placed in the `run.py` file
-* Your dependencies must be placed in the `requirements.txt` file
-* Do not edit any of the other files or your code may not deploy properly
+## Existing Features
 
-## Creating the Heroku app
+## Features left to be implemented
 
-When you create the app, you will need to add two buildpacks from the _Settings_ tab. The ordering is as follows:
+## Design
 
-1. `heroku/python`
-2. `heroku/nodejs`
+## Limitations
 
-You must then create a _Config Var_ called `PORT`. Set this to `8000`
+---
+# Testing
 
-If you have credentials, such as in the Love Sandwiches project, you must create another _Config Var_ called `CREDS` and paste the JSON into the value field.
+## Validator testing
 
-Connect your GitHub repository and deploy as normal.
+## High Level Testing
 
-## Constraints
+## Fixed Bugs
 
-The deployment terminal is set to 80 columns by 24 rows. That means that each line of text needs to be 80 characters or less otherwise it will be wrapped onto a second line.
+## Unfixed Bugs
 
------
-Happy coding!
+---
+# Deployment
+
+
+---
+
+# Technologies
+
+---
+# Credits
+
+## Code
+
+## Content
