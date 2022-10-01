@@ -1,6 +1,4 @@
-"""
-Install Modules for the program
-"""
+# Install Modules for the program
 import datetime
 import json
 import gspread  # pip install gspread
@@ -15,10 +13,10 @@ SCOPE = [
     "https://www.googleapis.com/auth/drive"
 ]
 
-"""
-Accessing our google spreadsheets data and storing
-in our constant variable for modification
-"""
+
+# Accessing google spreadsheets data and storing
+# in our constant variable for modification
+
 CREDS = Credentials.from_service_account_file('creds.json')
 CREDS_SCOPE = CREDS.with_scopes(SCOPE)
 GSPREAD_USER = gspread.authorize(CREDS_SCOPE)
@@ -160,11 +158,11 @@ def calculate_due_date(data):
             data.update('I3', date_dump.strip('"')+" days")
             return True
         except NameError:
-            print("Invalid data! See Example above\n")
+            print("Invalid data! See Example \n")
         except TypeError:
-            print("Invalid data! See Example above\n")
+            print("Invalid data! See Example \n")
         except ValueError:
-            print("Invalid data! See Example above\n")
+            print("Invalid data! See Example \n")
 
 
 def kolo_table(project_name):
