@@ -39,7 +39,6 @@ def project_starter():
         project_name = input("Enter your project name here:\n").capitalize()
 
         if validate_project_name(project_name):
-            print("name is valid!\n")
             break
 
     #######################
@@ -120,7 +119,6 @@ def kolo_budget(data):
 
         pro_budget = input("Enter your estimated budget for the project:\n")
         if validate_project_budget(pro_budget, data):
-            print("Data is valid!\n")
             break
 
 
@@ -281,7 +279,7 @@ def validate_project_name(name):
         for exist in my_projects:
             if exist.title == name:
                 print(f"Koloproject '{name}' already exist")
-                print(f"Invalid data: Please try again\n")
+                print("Invalid data: Please try again\n")
                 print(f"Use a prefix e.g: Second-{name} or {name} {suggest}\n")
                 return False
     return True
