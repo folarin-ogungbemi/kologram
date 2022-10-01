@@ -49,6 +49,39 @@ Kologram intends to make best use of users' data and provide them with every nec
 ---
 # Testing
 
+## Test procedure
+
+The following steps were carried out in testing the validity of the source code and the website standard fuctionality:
+
+* Implement a given Algorithm as a computer program
+
+| TEST                      | CRITERIA              | RESULT           | COMMENT
+|---------------------------|-----------------------|------------------|-------------------------------
+| Pass Through Linter(PEP8) | No issues             | [x]              |
+| Intended functionality    | functional            | [x]              |
+| Code Standard             | Meets minimum         | [x]              |
+
+* Adapt and combine algorithms to slove problem
+
+| TEST                  | CRITERIA          | RESULT           | COMMENT
+|-----------------------|-------------------|------------------|------------------------------
+| Handling Invalid input| handle            | [x]              | 
+| Codes                 | Internal/External | [x]              | 
+| Flow of Logic         | Well defined      | [x]              |
+
+* Use Programming construct
+
+| TEST                  | CRITERIA          | RESULT            | COMMENT
+|-----------------------|-------------------|-------------------|------------------------------
+| flow controls         | as Appropriate    | [x]               | 
+| program function      | Explain           | [x]               | 
+| README File           | structure         | [x]               | 
+| Testing code          | Errors            | [x]               | 
+| Deployment of code    | Github            | [x]               |
+| Deploy python code    | cloud-base        | [x]               | Heroku
+| Commented codes       | None              | [x]               | 
+
+
 ## Validator testing
 
 ## High Level Testing
