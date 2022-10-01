@@ -88,7 +88,7 @@ def list_of_projects():
     """
     my_projects = SHEET.worksheets()
 
-    # collect created projects 
+    # collect created projects
     my_projects_list = []
     for project in my_projects:
         projects = project.title
@@ -105,7 +105,7 @@ def project_search():
     search out project from list
     """
     my_projects = SHEET.worksheets()
-    # collect created projects 
+    # collect created projects in a list
     my_projects_list = []
     for project in my_projects:
         projects = project.title
@@ -353,7 +353,3 @@ def main():
 
 
 main()
-
-
-
-
