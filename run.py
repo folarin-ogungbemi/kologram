@@ -36,7 +36,7 @@ def project_starter():
         print("Start your desired project")
         print("e.g: 'Vacation', 'Car', 'Lamborghini', 'Child-education'\n")
 
-        project_name = input("Enter your project name here: ").capitalize()
+        project_name = input("Enter your project name here:\n").capitalize()
 
         if validate_project_name(project_name):
             print("name is valid!\n")
@@ -112,7 +112,7 @@ def project_search():
         my_projects_list.append(projects)
     list_of_projects()
     print("Choose desired project from above list")
-    my_project = input("Enter project name here: ").capitalize()
+    my_project = input("Enter project name here:\n").capitalize()
     i = 0
     project_found = "None"
     while i < len(my_projects_list):
@@ -131,7 +131,7 @@ def kolo_budget(data):
         print("Enter budget in numbers or decimals")
         print("For Example: '1234567890', '123.456'\n")
 
-        project_budget = input("Enter your estimated budget for the project: ")
+        project_budget = input("Enter your estimated budget for the project:\n")
         if validate_project_budget(project_budget, data):
             print("Data is valid!\n")
             break
@@ -156,7 +156,7 @@ def calculate_due_date(data):
         print("Enter project due date like so: year, month, day.")
         print("Example: 2022,9,26\n")
 
-        project_due_date = input("Enter project due date: ")
+        project_due_date = input("Enter project due date:\n")
         current_date = datetime.date.today()
         if validate_project_due_date(project_due_date):
             print("data is valid!")
@@ -201,14 +201,14 @@ def kolo_day():
     Get users periodic contribution data
     """
     while True:
-        question = input("Would you like to Kolo today (y/n): ")
+        question = input("Would you like to Kolo today (y/n):\n")
         if question == 'y'.lower():
             my_project = project_search()
             if my_project == "None":
                 print("\nThe project you entered does not exist!!")
                 print("Please check your project list and try again")
             else:
-                kolo_amount = float(input("Enter contribution amount: "))
+                kolo_amount = float(input("Enter contribution amount:\n"))
                 # Enter date the account was credited
                 credit_date = datetime.date.today()
                 # serialize datetime into JSON
@@ -332,7 +332,7 @@ def main():
         print("2. Save today")
         print("3. See project overview")
         print("0. Exit kologram\n")
-        option = int(input("Choose an option: "))
+        option = int(input("Choose an option:\n"))
 
         # Executing users input
         if option == 0:
