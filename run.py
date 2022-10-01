@@ -140,12 +140,13 @@ def calculate_due_date(data):
     while True:
         print("Enter project due date like so: year, month, day.")
         print("Example: 2022,9,26\n")
-
-        project_due_date = input("Enter project due date:\n")
+        try:
+            project_due_date = input("Enter project due date:\n").split(",")
+        except ValueError:
+            print("The Date you entered is Invalid. Try again!")
         current_date = datetime.date.today()
         if validate_project_due_date(project_due_date):
-            print("data is valid!")
-            split_date = project_due_date.split(",")
+            split_date = project_due_date
             dated_list = []
             for i in split_date:
                 my_int = int(i)
