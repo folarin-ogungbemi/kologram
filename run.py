@@ -260,7 +260,7 @@ def calculate_outstanding_amount(project):
     outstanding = [[int(budget) - total_amount]]
     S_VALUES.update(spreadsheetId=SHEET_ID,
                     range="Car!J3",
-                    valueInputOption='USER_ENTERED',
+                    valueInputOption='RAW',
                     body={"values": outstanding}).execute()
 
 
