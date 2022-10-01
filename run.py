@@ -322,7 +322,7 @@ def main():
         try:
             option = int(input("Choose an option:\n"))
         except ValueError:
-            print("Invalid Input.")
+            print("Invalid option: Please try again\n")
         # Executing users input
         if option == 0:
             print("kologram is now exiting...")
