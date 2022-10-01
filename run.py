@@ -307,9 +307,13 @@ def main():
     option = None  # This will be the user's service preference
     # Code idea from Computer science, Youtube
     while True:
+        # Introduction text
+        print("\nWelcome to kologram, your simple project tracker")
+        print("This project helps you to keep track of  \
+            your periodic contributions of your desired project.")
+        ("Kolo, A word well known to Nigerians as a private 'Savings Box'.\n")
         # Create the option  menu
         option_criteria = "Please choose option 0, 1, 2 or 3"
-        print("\nWelcome to kologram, your simple project tracker")
         print(f"To begin, {option_criteria}")
         print("------------------------------------------------")
         print("1. Start a new project")
